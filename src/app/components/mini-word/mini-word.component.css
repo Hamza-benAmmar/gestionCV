@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.gestion-para {
+  display: flex;
+  align-items: flex-start;
+}
+.paragraph {
+  margin-left: 2em;
+  margin-bottom: 0;
+}
+.color,
+.font-size,
+.font-type {
+  width: 20%;
+  margin: 2em;
+}
+.rainbow {
+  display: flex;
+  align-items: center;
+}
+.rainbow input {
+  height: 5%;
+  width: 50%;
+}

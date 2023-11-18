@@ -1,0 +1,12 @@
+<li class="list-group-item" (click)="selectCv()">
+  <img
+    [src]="
+      cv?.path
+        ? '../../../assets/images/' + cv?.path
+        : '../../../assets/images/Cat03.jpg'
+    "
+    alt=""
+  />
+  {{ cv?.firstname }}
+  {{ cv?.name }}
+</li>

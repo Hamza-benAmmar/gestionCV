@@ -1,0 +1,20 @@
+<div class="card" style="width: 18rem">
+  <img
+    [src]="
+      cv?.path
+        ? '../../../assets/images/' + cv?.path
+        : '../../../assets/images/Cat03.jpg'
+    "
+    alt=""
+  />
+  <div class="card-body">
+    <h5 class="card-title">firstname : {{ cv?.firstname }}</h5>
+    <h5 class="card-title">last name : {{ cv?.name }}</h5>
+    <h5 class="card-title">age : {{ cv?.age }}</h5>
+    <h5 class="card-title">job : {{ cv?.job }}</h5>
+    <a class="btn btn-primary" [routerLink]="['']">return</a>
+    <a class="btn btn-primary" (click)="deleteCv()" [routerLink]="['']"
+      >delete</a
+    >
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div
+  class="paragraph"
+  [ngStyle]="{
+    color: color,
+    'font-size.px': fontSize,
+    'font-family': fontType
+  }"
+>
+  test
+</div>
+<div class="gestion-para">
+  <input
+    class="color"
+    type="color"
+    name="color"
+    (input)="onColorChange($event)"
+  />
+  <input
+    class="font-size"
+    type="number"
+    name="font-size"
+    id="font-size"
+    (input)="onSizeChange($event)"
+  />
+  <select
+    class="font-type"
+    name="font-type"
+    id="font-type"
+    (change)="onFontFamilyChange($event)"
+  >
+    <option value="arial">Arial</option>
+    <option value="Georgia">Georgia</option>
+    <option value="Garamond">Garamond</option>
+  </select>
+</div>
+<div class="rainbow">
+  <p>Add some text :</p>
+  <input type="text" rainbow />
+</div>
