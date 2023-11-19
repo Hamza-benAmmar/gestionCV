@@ -1,11 +1,7 @@
 <div class="card" style="width: 18rem">
   <img
-    [src]="
-      cv?.path
-        ? '../../../assets/images/' + cv?.path
-        : '../../../assets/images/Cat03.jpg'
-    "
-    alt=""
+    src="assets/images/{{ cv?.path | defaultImage }}"
+    alt="{{ cv?.firstname }}"
   />
   <div class="card-body">
     <h5 class="card-title">firstname : {{ cv?.firstname }}</h5>

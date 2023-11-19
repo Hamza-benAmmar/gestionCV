@@ -22,12 +22,6 @@ export class CvService {
     ];
   }
   getCvs(): Observable<Cv[]> {
-    this.http.get<Cv[]>('https://apilb.tridevs.net/api/personnes').subscribe(
-      (response) => {},
-      (error) => {
-        console.log(error);
-      }
-    );
     return this.http.get<Cv[]>('https://apilb.tridevs.net/api/personnes');
   }
   getFakers(): Cv[] {

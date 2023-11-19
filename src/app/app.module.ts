@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DetailPersonComponent } from './cv/detail-person/detail-person.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from './components/form/form.component';
+import { DefaultImagePipe } from './cv/pipes/default-image.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FormComponent } from './components/form/form.component';
     HeaderComponent,
     DetailPersonComponent,
     FormComponent,
+    DefaultImagePipe,
   ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],

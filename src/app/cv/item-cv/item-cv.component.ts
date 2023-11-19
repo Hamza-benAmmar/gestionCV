@@ -10,7 +10,6 @@ export class ItemCvComponent {
   @Input() cv: Cv | null = null;
 
   @Output() selected = new EventEmitter();
-  defaultImage: string = 'rotating_card_profile3.jpg';
 
   selectCv() {
     console.log('to the list component');

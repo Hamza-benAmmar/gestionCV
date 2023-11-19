@@ -21,17 +21,18 @@ export class DetailPersonComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
       const { id } = params;
-      this.cvService.getCvById(id).subscribe(
-        (cv) => {
+      this.cvService.getCvById(id).subscribe({
+        next: (cv) => {
+          console.log(cv);
           this.cv = cv;
         },
-        (error) => {
+        error: (error) => {
           this.router.navigate(['']);
           this.toastrService.error('Cannot find Cv ', 'error', {
             timeOut: 2000,
           });
-        }
-      );
+        },
+      });
     });
   }
   deleteCv() {

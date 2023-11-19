@@ -17,7 +17,9 @@ export class CvComponent implements OnInit {
   ngOnInit(): void {
     this.cvs = [];
     this.cvService.getCvs().subscribe({
-      next: (data) => (this.cvs = data),
+      next: (data) => {
+        this.cvs = data;
+      },
       error: (error) => {
         this.toastrService.error(
           'could not fetch the api , i will be using fakers',
@@ -29,7 +31,6 @@ export class CvComponent implements OnInit {
         this.cvs = this.cvService.getFakers();
       },
     });
-    console.log(this.cvs);
   }
 
   @Input() cvs: Cv[] = [];

@@ -11,6 +11,6 @@ export class EmbaucheComponent implements OnInit {
   cvs: Cv[] | null = null;
   constructor(private embaucheService: EmbaucheService) {}
   ngOnInit(): void {
-    this.cvs = this.embaucheService.getEmbaches();
+    this.cvs = this.embaucheService.getEmbauches();
   }
 }

@@ -12,12 +12,13 @@ import { Router } from '@angular/router';
 export class DetailCvComponent {
   constructor(
     private embaucheService: EmbaucheService,
-    private router: Router //private router: Route
+    private router: Router
   ) {}
   @Input() cv: Cv | null = null;
   embaucherCondidate(): void {
     console.log('hey' + this.cv);
     if (this.cv) {
+      console.log(this.cv);
       this.embaucheService.embaucherCondidate(this.cv);
     }
   }

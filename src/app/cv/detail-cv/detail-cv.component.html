@@ -7,12 +7,8 @@
         </div>
         <div class="user">
           <img
-            [src]="
-              cv?.path
-                ? '../../../assets/images/' + cv?.path
-                : '../../../assets/images/Cat03.jpg'
-            "
-            alt=""
+            src="assets/images/{{ cv?.path | defaultImage }}"
+            alt="{{ cv?.firstname }}"
           />
         </div>
         <div class="content">
