@@ -19,8 +19,8 @@ import { ROUTING } from './app.routing';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DetailPersonComponent } from './cv/detail-person/detail-person.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from './components/form/form.component';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ import { FormsModule } from '@angular/forms';
     MiniWordComponent,
     BrowserAnimationsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-bottom-left',

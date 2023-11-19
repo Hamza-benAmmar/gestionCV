@@ -23,9 +23,7 @@ export class CvService {
   }
   getCvs(): Observable<Cv[]> {
     this.http.get<Cv[]>('https://apilb.tridevs.net/api/personnes').subscribe(
-      (response) => {
-        console.log(response);
-      },
+      (response) => {},
       (error) => {
         console.log(error);
       }

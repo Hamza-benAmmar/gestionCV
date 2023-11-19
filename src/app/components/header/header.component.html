@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">Gestion Cv</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -20,15 +20,21 @@
         <a class="nav-link" [routerLink]="['miniword']">Mini word</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['login']" *ngIf="!isUserLoggedIn$()"
+        <a
+          class="nav-link"
+          [routerLink]="['login']"
+          *ngIf="!(userService.isLoggedIn | async)"
           >Login</a
-        >
-        <a class="nav-link" *ngIf="isUserLoggedIn$()" (click)="logout()"
-          >Logout</a
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a
+          class="nav-link"
+          [routerLink]="['login']"
+          *ngIf="userService.isLoggedIn | async"
+          (click)="handleLogout()"
+          >Logout</a
+        >
       </li>
     </ul>
   </div>

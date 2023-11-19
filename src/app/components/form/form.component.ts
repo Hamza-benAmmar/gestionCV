@@ -1,44 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import { User } from './models/User';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-formulaire',
+  selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css'],
+  styleUrl: './form.component.css',
 })
-export class FormComponent {
-  constructor(private userService: UserService, private router: Router) {}
-  email: string = '';
-  password: string = '';
-  isFormValid(
-    emailInput: HTMLInputElement,
-    passwordInput: HTMLInputElement
-  ): boolean {
-    return emailInput.value.includes('@') && passwordInput.value.length >= 4;
+export class FormComponent implements OnInit {
+  form: FormGroup;
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private toastrService: ToastrService
+  ) {}
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      email: new FormControl(null, [Validators.email, Validators.required]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+    });
   }
-  showAlert: boolean = false;
-
-  checkEmail(value: string) {
-    if (!value.includes('@')) {
-      this.showAlert = true;
-    } else {
-      this.showAlert = false;
-    }
-  }
-  onSubmit(emailInput: HTMLInputElement, passwordInput: HTMLInputElement) {
-    this.email = emailInput.value;
-    this.password = passwordInput.value;
-
-    this.userService
-      .login({ email: this.email, password: this.password })
-      .subscribe((response) => {
-        console.log(response);
-        localStorage.setItem('user', JSON.stringify(response));
-        this.router.navigate(['login']);
-      });
-
-    emailInput.value = '';
-    passwordInput.value = '';
+  onFormSubmit() {
+    this.userService.login(this.form.value).subscribe({
+      next: (user: User) => {
+        this.router.navigate(['']);
+      },
+      error: (errpr: any) => {
+        this.toastrService.error('email or password incorrect', 'error', {
+          timeOut: 2000,
+        });
+      },
+    });
   }
 }
