@@ -22,6 +22,8 @@ import { DetailPersonComponent } from './cv/detail-person/detail-person.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from './components/form/form.component';
 import { DefaultImagePipe } from './cv/pipes/default-image.pipe';
+import { FilteringCvComponent } from './components/filtering-cv/filtering-cv.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { DefaultImagePipe } from './cv/pipes/default-image.pipe';
     DetailPersonComponent,
     FormComponent,
     DefaultImagePipe,
+    FilteringCvComponent,
+    SearchComponent,
   ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],

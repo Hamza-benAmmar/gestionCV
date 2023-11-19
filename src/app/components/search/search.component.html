@@ -1,0 +1,8 @@
+<form [formGroup]="searchForm">
+  <input type="text" formControlName="search" class="form-control" />
+</form>
+
+<app-list-cv
+  [cvs]="cvs | async"
+  (selectedCv)="onSelectCv($event)"
+></app-list-cv>
