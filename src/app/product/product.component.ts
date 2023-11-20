@@ -32,6 +32,8 @@ export class ProductComponent {
     );
   }
   showmore() {
-    this.pageSize.next(this.pageSize.value + 12);
+    if (this.pageSize.value + 12 < 100)
+      this.pageSize.next(this.pageSize.value + 12);
+    else this.pageSize.complete();
   }
 }
