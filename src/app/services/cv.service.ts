@@ -5,14 +5,7 @@ import {
   HttpErrorResponse,
   HttpParams,
 } from '@angular/common/http';
-import {
-  BehaviorSubject,
-  Observable,
-  catchError,
-  of,
-  tap,
-  throwError,
-} from 'rxjs';
+import { BehaviorSubject, Observable, catchError, of, share, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -35,19 +28,34 @@ export class CvService {
   }
   cvsSubject = new BehaviorSubject<Cv[]>(null);
   cvs$ = this.cvsSubject.asObservable();
+  private cvListObservable$: Observable<Cv[]>;
 
-  getCvs(): Observable<Cv[]> {
+  /*getCvs(): Observable<Cv[]> {
     return this.http.get<Cv[]>(this.url).pipe(
       tap((data) => {
         this.cvs = data;
-        console.log('emitting data');
+        console.log('emitting');
         this.cvsSubject.next(data);
       }),
       catchError((error) => {
         console.log(error);
-        return of([]);
+        return of(this.cvs);
       })
     );
+  }*/
+  getCvs(): Observable<Cv[]> {
+    const cvListObservable$ = this.http.get<Cv[]>(this.url).pipe(
+      tap((data: Cv[]) => {
+        this.cvsSubject.next(data); // Update the BehaviorSubject with the new data
+      }),
+      catchError((error) => {
+        console.error('Error fetching CVs:', error);
+        return of([]); // Return an empty array or current cached cvs on error
+      }),
+      share() // Multicast to multiple subscribers
+    );
+
+    return cvListObservable$;
   }
   getCvByName(name: string): Observable<Cv[]> {
     const params = new HttpParams().set(

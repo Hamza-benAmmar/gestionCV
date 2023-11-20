@@ -17,8 +17,8 @@ export class ProductComponent {
       switchMap((pageSize: number) =>
         this.productService.getProducts(12, pageSize)
       ),
-      scan((acc, products) => {
-        return [...acc, ...products];
+      scan((allProducts, products) => {
+        return [...allProducts, ...products];
       }, [])
     );
   }

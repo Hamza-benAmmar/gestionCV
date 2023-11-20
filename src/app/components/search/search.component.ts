@@ -34,14 +34,15 @@ export class SearchComponent implements OnInit {
       distinctUntilChanged(),
       switchMap((input: string) => {
         if (input) {
-          return this.cvService.getCvByName(input);
+          return this.cvService.getCvByName(input).pipe(
+            catchError((error) => {
+              console.error('Error fetching CVs:', error);
+              return of([]);
+            })
+          );
         } else {
           return of([]);
         }
-      }),
-      catchError((error) => {
-        console.error('Error fetching CVs:', error);
-        return of([]);
       })
     );
   }

@@ -16,7 +16,7 @@ export class FilteringCvComponent implements OnInit {
   seniors: Cv[];
   constructor(private cvService: CvService, private router: Router) {}
   ngOnInit(): void {
-    this.cvService.cvsSubject.subscribe({
+    this.cvService.getCvs().subscribe({
       next: (cvs) => {
         console.log('filter : ', cvs);
         if (cvs != null) {

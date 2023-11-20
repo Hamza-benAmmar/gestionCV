@@ -6,16 +6,22 @@ import { FormComponent } from './components/form/form.component';
 import { FilteringCvComponent } from './components/filtering-cv/filtering-cv.component';
 import { RxJsComponent } from './components/rx-js/rx-js.component';
 import { ProductComponent } from './product/product.component';
+import { cvResolver } from './cv/resolvers/cv-resolver.guard';
+import { detailResolver } from './cv/resolvers/detail-resolver..guard';
 
 const APP_ROUTING: Routes = [
   {
     path: 'cv',
     children: [
-      { path: '', component: CvComponent },
-      { path: ':id', component: DetailPersonComponent },
+      { path: '', component: CvComponent, resolve: { cvs: cvResolver } },
+      {
+        path: ':id',
+        component: DetailPersonComponent,
+        resolve: { cvDetail: detailResolver },
+      },
     ],
   },
-  { path: '', component: CvComponent },
+  { path: '', component: CvComponent, resolve: { cvs: cvResolver } },
   { path: 'miniword', component: MiniWordComponent },
   { path: 'login', component: FormComponent },
   { path: 'filtering', component: FilteringCvComponent },

@@ -19,9 +19,11 @@ export class DetailPersonComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params) => {
+    this.cv = this.activatedRoute.snapshot.data['cvDetail'];
+    console.log('cv : ', this.cv);
+    /*this.activatedRoute.params.subscribe((params) => {
       const { id } = params;
-      this.cvService.getCvById(id).subscribe({
+      /*this.cvService.getCvById(id).subscribe({
         next: (cv) => {
           console.log(cv);
           this.cv = cv;
@@ -33,7 +35,8 @@ export class DetailPersonComponent implements OnInit {
           });
         },
       });
-    });
+      this.cv.
+    });*/
   }
   deleteCv() {
     if (this.cv) {

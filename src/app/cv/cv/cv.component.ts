@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Cv } from '../../models/cv';
 import { CvService } from '../../services/cv.service';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cv',
@@ -11,12 +12,12 @@ import { ToastrService } from 'ngx-toastr';
 export class CvComponent implements OnInit {
   constructor(
     private cvService: CvService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.cvs = [];
-    this.cvService.getCvs().subscribe({
+    /*this.cvService.getCvs().subscribe({
       next: (data) => {
         this.cvs = data;
       },
@@ -30,7 +31,8 @@ export class CvComponent implements OnInit {
         );
         this.cvs = this.cvService.getFakers();
       },
-    });
+    });*/
+    this.cvs = this.activatedRoute.snapshot.data['cvs'];
   }
 
   @Input() cvs: Cv[] = [];

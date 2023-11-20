@@ -31,7 +31,7 @@ export class FormComponent implements OnInit {
       next: (user: User) => {
         this.router.navigate(['']);
       },
-      error: (errpr: any) => {
+      error: (error: any) => {
         this.toastrService.error('email or password incorrect', 'error', {
           timeOut: 2000,
         });
