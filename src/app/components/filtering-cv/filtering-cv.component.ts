@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Cv } from '../../models/cv';
 import { UserService } from '../../services/user.service';
 import { CvService } from '../../services/cv.service';
@@ -9,14 +9,17 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './filtering-cv.component.html',
   styleUrl: './filtering-cv.component.css',
 })
-export class FilteringCvComponent {
+export class FilteringCvComponent implements OnInit {
   date: Date = new Date();
-  cvs: Cv[] = [];
-  constructor(private cvService: CvService, private router: Router) {
+  cvs: Cv[];
+  juniors: Cv[];
+  seniors: Cv[];
+  constructor(private cvService: CvService, private router: Router) {}
+  ngOnInit(): void {
     this.cvService.cvsSubject.subscribe({
       next: (cvs) => {
-        if (cvs != undefined) {
-          console.log(cvs);
+        console.log('filter : ', cvs);
+        if (cvs != null) {
           this.juniors = cvs.filter((cv) => cv.age < 40);
           this.seniors = cvs.filter((cv) => cv.age >= 40);
           console.log(this.juniors);
@@ -25,8 +28,7 @@ export class FilteringCvComponent {
       },
     });
   }
-  juniors: Cv[];
-  seniors: Cv[];
+
   showJuniors() {
     this.cvs = this.juniors;
   }

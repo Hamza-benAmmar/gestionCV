@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   Observable,
   catchError,
+  debounceTime,
   distinctUntilChanged,
   of,
   switchMap,
@@ -29,6 +30,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.cvs = this.searchForm.get('search').valueChanges.pipe(
+      debounceTime(400),
       distinctUntilChanged(),
       switchMap((input: string) => {
         if (input) {

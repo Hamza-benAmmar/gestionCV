@@ -24,6 +24,7 @@ import { FormComponent } from './components/form/form.component';
 import { DefaultImagePipe } from './cv/pipes/default-image.pipe';
 import { FilteringCvComponent } from './components/filtering-cv/filtering-cv.component';
 import { SearchComponent } from './components/search/search.component';
+import { RxJsComponent } from './components/rx-js/rx-js.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SearchComponent } from './components/search/search.component';
     DefaultImagePipe,
     FilteringCvComponent,
     SearchComponent,
+    RxJsComponent,
   ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],

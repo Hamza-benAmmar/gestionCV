@@ -40,6 +40,7 @@ export class CvService {
     return this.http.get<Cv[]>(this.url).pipe(
       tap((data) => {
         this.cvs = data;
+        console.log('emitting data');
         this.cvsSubject.next(data);
       }),
       catchError((error) => {
