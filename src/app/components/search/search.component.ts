@@ -48,6 +48,6 @@ export class SearchComponent implements OnInit {
   }
   onSelectCv(cv: Cv) {
     const params = cv.id;
-    this.router.navigate(['cv', params]);
+    this.router.navigate(['/cv', params]);
   }
 }

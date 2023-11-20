@@ -32,7 +32,7 @@ export class RxJsComponent {
 
     const val1 = this.formgroup
       .get('stream1')!
-      .valueChanges.pipe(debounceTime(400), takeUntil(this.strm1)); // to avoid repetition
+      .valueChanges.pipe(debounceTime(400), takeUntil(this.strm1));
     const val2 = this.formgroup
       .get('stream2')!
       .valueChanges.pipe(debounceTime(400), takeUntil(this.strm2));
@@ -46,9 +46,10 @@ export class RxJsComponent {
     );
   }
   endStreaming1() {
-    this.strm1.next(null); //notify the subject that it should end emitting vals
+    this.strm1.next(null);
     this.strm1.complete();
   }
+
   endStreaming2() {
     this.strm2.next(null);
     this.strm2.complete();

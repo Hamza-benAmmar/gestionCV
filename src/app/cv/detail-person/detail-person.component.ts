@@ -3,6 +3,7 @@ import { Cv } from '../../models/cv';
 import { CvService } from '../../services/cv.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-detail-person',
@@ -11,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DetailPersonComponent implements OnInit {
   cv: Cv | undefined;
-
   constructor(
     private cvService: CvService,
     private activatedRoute: ActivatedRoute,
@@ -19,8 +19,27 @@ export class DetailPersonComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit() {
-    this.cv = this.activatedRoute.snapshot.data['cvDetail'];
-    console.log('cv : ', this.cv);
+    this.activatedRoute.data.subscribe({
+      next: (data) => {
+        this.cv = data['cvDetail'];
+        if (!this.cv) {
+          this.toastrService.error('Cannot find CV', 'Error', {
+            timeOut: 2000,
+          });
+          this.router.navigate(['/']);
+        }
+      },
+      error: (error) => {
+        this.toastrService.error('Error loading CV details', 'Error');
+        this.router.navigate(['/']);
+      },
+    });
+    //console.log('cv : ', this.cv);
+    /*this.cvService.getCvById(this.cv.id).subscribe({
+      next: (cv) => {
+        this.cv = cv;
+      },
+    });*/
     /*this.activatedRoute.params.subscribe((params) => {
       const { id } = params;
       /*this.cvService.getCvById(id).subscribe({

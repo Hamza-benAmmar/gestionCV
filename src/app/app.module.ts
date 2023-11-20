@@ -26,6 +26,7 @@ import { FilteringCvComponent } from './components/filtering-cv/filtering-cv.com
 import { SearchComponent } from './components/search/search.component';
 import { RxJsComponent } from './components/rx-js/rx-js.component';
 import { ProductComponent } from './product/product.component';
+import { MasterDetailsComponent } from './cv/master-details/master-details.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ProductComponent } from './product/product.component';
     SearchComponent,
     RxJsComponent,
     ProductComponent,
+    MasterDetailsComponent,
   ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
