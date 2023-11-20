@@ -1,5 +1,5 @@
 <ng-container *ngIf="products$ | async as products">
-  <div *ngIf="products" class="container">...loading</div>
+  <div *ngIf="!products" class="container">...loading</div>
   <div class="container">
     <button class="btn btn-danger" (click)="showmore()">Load More</button>
 

@@ -32,10 +32,6 @@ export class ProductComponent {
     );
   }
   showmore() {
-    const pageSize = this.pageSize.value + 12;
-    if (pageSize <= 100) this.pageSize.next(pageSize);
-    else {
-      this.pageSize.complete();
-    }
+    this.pageSize.next(this.pageSize.value + 12);
   }
 }
