@@ -1,0 +1,21 @@
+<div *ngIf="(products | async) == null" class="container">...loading</div>
+<div class="container">
+  <button class="btn btn-danger" (click)="showmore()">Load More</button>
+
+  <div class="alert alert-info">
+    Nombre de produits: {{ (products | async)?.length }}
+  </div>
+  <div class="row">
+    <div class="col-4" *ngFor="let product of products | async">
+      <li class="list-group-item">
+        <img
+          class="rounded-circle"
+          height="200px"
+          width="200px"
+          src="{{ product.thumbnail }}"
+        />
+        {{ product.title }}
+      </li>
+    </div>
+  </div>
+</div>

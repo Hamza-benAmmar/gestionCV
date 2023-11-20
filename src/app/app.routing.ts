@@ -5,6 +5,7 @@ import { DetailPersonComponent } from './cv/detail-person/detail-person.componen
 import { FormComponent } from './components/form/form.component';
 import { FilteringCvComponent } from './components/filtering-cv/filtering-cv.component';
 import { RxJsComponent } from './components/rx-js/rx-js.component';
+import { ProductComponent } from './product/product.component';
 
 const APP_ROUTING: Routes = [
   {
@@ -19,6 +20,7 @@ const APP_ROUTING: Routes = [
   { path: 'login', component: FormComponent },
   { path: 'filtering', component: FilteringCvComponent },
   { path: 'merge', component: RxJsComponent },
+  { path: 'product', component: ProductComponent },
 ];
 
 export const ROUTING = RouterModule.forRoot(APP_ROUTING);

@@ -47,7 +47,7 @@ export class RxJsComponent {
     );
   }
   endStreaming1() {
-    this.strm1.next(null);
+    this.strm1.next(null); //notify the subject that it should end emitting vals
     this.strm1.complete();
   }
   endStreaming2() {
