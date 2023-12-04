@@ -1,0 +1,104 @@
+<form [formGroup]="form" (ngSubmit)="onFormSubmit()">
+  <div class="form-group">
+    <label for="nameId">name : </label>
+    <input
+      type="name"
+      formControlName="name"
+      class="form-control"
+      id="nameId"
+      aria-describedby="nameHelp"
+      placeholder="Enter name"
+    />
+    <div
+      class="alert alert-danger invalid"
+      *ngIf="form.get('name').invalid && form.get('name').touched"
+    >
+      please type your name
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="firstnameId">firstname:</label>
+    <input
+      type="firstname"
+      formControlName="firstname"
+      class="form-control"
+      id="firstnameId"
+      aria-describedby="firstnameHelp"
+      placeholder="Enter firstname"
+    />
+    <div
+      class="alert alert-danger invalid"
+      *ngIf="form.get('firstname').invalid && form.get('firstname').touched"
+    >
+      please type your firstname
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="ageId">age :</label>
+    <input
+      type="number"
+      formControlName="age"
+      class="form-control"
+      id="ageId"
+      aria-describedby="ageHelp"
+    />
+    <div
+      class="alert alert-danger invalid"
+      *ngIf="form.get('age').invalid && form.get('age').touched"
+    >
+      please type a valid age
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="jobId">job :</label>
+    <input
+      type="text"
+      formControlName="job"
+      class="form-control"
+      id="jobId"
+      aria-describedby="jobHelp"
+      placeholder="Enter job"
+    />
+    <div
+      class="alert alert-danger invalid"
+      *ngIf="form.get('job').invalid && form.get('job').touched"
+    >
+      please type your job
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="cinId">cin :</label>
+    <input
+      type="text"
+      formControlName="cin"
+      class="form-control"
+      id="cinId"
+      aria-describedby="cinHelper"
+      placeholder="Enter cin"
+    />
+    <div
+      class="alert alert-danger invalid"
+      *ngIf="form.get('cin').invalid && form.get('cin').touched"
+    >
+      please type your cin
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="pathId">path :</label>
+    <input
+      type="text"
+      formControlName="path"
+      class="form-control"
+      id="pathId"
+      aria-describedby="pathHelp"
+      placeholder="Enter path"
+    />
+    <div
+      class="alert alert-danger invalid"
+      *ngIf="form.get('path').invalid && form.get('path').touched"
+    >
+      please type a valid path
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

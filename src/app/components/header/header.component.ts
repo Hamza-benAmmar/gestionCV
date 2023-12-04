@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Observable } from 'rxjs';
 import { User } from '../form/models/User';
+import { UserToken } from '../form/models/userToken';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit {
   constructor(public userService: UserService) {}
   ngOnInit(): void {
     this.userService.userSubject.subscribe({
-      next: (user: User) => {
+      next: (user: UserToken) => {
         console.log(user);
       },
       error: (error: any) => {

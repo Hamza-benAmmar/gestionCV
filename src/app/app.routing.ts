@@ -9,6 +9,7 @@ import { ProductComponent } from './product/product.component';
 import { cvResolver } from './cv/resolvers/cv-resolver.guard';
 import { detailResolver } from './cv/resolvers/detail-resolver..guard';
 import { MasterDetailsComponent } from './cv/master-details/master-details.component';
+import { AddCvComponent } from './cv/add-cv/add-cv.component';
 
 const APP_ROUTING: Routes = [
   {
@@ -20,7 +21,15 @@ const APP_ROUTING: Routes = [
         component: DetailPersonComponent,
         resolve: { cvDetail: detailResolver },
       },
+      {
+        path: 'update/:id',
+        component: AddCvComponent,
+      },
     ],
+  },
+  {
+    path: 'add',
+    component: AddCvComponent,
   },
   {
     path: 'list',

@@ -4,25 +4,30 @@ import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
 import { UserLogin } from '../components/form/models/userLogin';
 import { User } from '../components/form/models/User';
 import { Console } from 'console';
+import { UserToken } from '../components/form/models/userToken';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private _url: string = 'https://apilb.tridevs.net/api/users/login';
-  userSubject = new BehaviorSubject<User>(null);
+  userSubject = new BehaviorSubject<UserToken>(null);
   isLoggedIn: Observable<boolean> = this.userSubject.pipe(
     map((user) => !!user)
   );
 
   constructor(private httpClient: HttpClient) {}
   login(payload: UserLogin): Observable<User> {
-    console.log(payload);
     return this.httpClient.post<User>(this._url, payload).pipe(
       tap((user) => {
+        const token = {
+          token: user.id,
+          email: payload.email,
+          userId: user.userId,
+        };
         console.log('login');
-        localStorage.setItem('user', JSON.stringify(user));
-        this.userSubject.next(user);
+        localStorage.setItem('token', user.id);
+        this.userSubject.next(token);
       }),
       catchError((err) => {
         console.log(err);
@@ -31,7 +36,7 @@ export class UserService {
     );
   }
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('token');
     this.userSubject.next(null);
   }
 }

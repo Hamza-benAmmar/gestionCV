@@ -46,15 +46,14 @@ export class CvService {
   getCvs(): Observable<Cv[]> {
     const cvListObservable$ = this.http.get<Cv[]>(this.url).pipe(
       tap((data: Cv[]) => {
-        this.cvsSubject.next(data); // Update the BehaviorSubject with the new data
+        this.cvsSubject.next(data);
       }),
       catchError((error) => {
         console.error('Error fetching CVs:', error);
-        return of([]); // Return an empty array or current cached cvs on error
+        return of([]);
       }),
-      share() // Multicast to multiple subscribers
+      share()
     );
-
     return cvListObservable$;
   }
   getCvByName(name: string): Observable<Cv[]> {
@@ -76,5 +75,15 @@ export class CvService {
   deleteCv(id: number): Observable<void> {
     const deleteUrl = `https://apilb.tridevs.net/api/personnes/${id}`;
     return this.http.delete<void>(deleteUrl);
+  }
+  addCv(cv: Cv) {
+    console.log('in the add cv function');
+    console.log(cv);
+    return this.http.post(this.url, cv);
+  }
+
+  updateCv(cv: Cv) {
+    console.log(cv);
+    return this.http.patch(this.url, cv);
   }
 }

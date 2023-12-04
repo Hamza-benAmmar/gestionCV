@@ -17,7 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ROUTING } from './app.routing';
 import { HeaderComponent } from './components/header/header.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DetailPersonComponent } from './cv/detail-person/detail-person.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from './components/form/form.component';
@@ -27,6 +27,8 @@ import { SearchComponent } from './components/search/search.component';
 import { RxJsComponent } from './components/rx-js/rx-js.component';
 import { ProductComponent } from './product/product.component';
 import { MasterDetailsComponent } from './cv/master-details/master-details.component';
+import { AddCvComponent } from './cv/add-cv/add-cv.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -45,8 +47,12 @@ import { MasterDetailsComponent } from './cv/master-details/master-details.compo
     RxJsComponent,
     ProductComponent,
     MasterDetailsComponent,
+    AddCvComponent,
   ],
-  providers: [provideClientHydration()],
+  providers: [
+    provideClientHydration(),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,

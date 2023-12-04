@@ -5,6 +5,7 @@ export class Cv {
     public firstname = '',
     public path = '',
     public age = 0,
-    public job = ''
+    public job = '',
+    public cin = ''
   ) {}
 }
