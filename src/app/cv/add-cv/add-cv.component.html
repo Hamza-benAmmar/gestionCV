@@ -1,5 +1,11 @@
-<form [formGroup]="form" (ngSubmit)="onFormSubmit()">
-  <div class="form-group">
+<form
+  *ngIf="form"
+  [formGroup]="form"
+  (ngSubmit)="onFormSubmit()"
+  class="container"
+  novalidate
+>
+  <div class="mb-3">
     <label for="nameId">name : </label>
     <input
       type="name"
@@ -16,7 +22,7 @@
       please type your name
     </div>
   </div>
-  <div class="form-group">
+  <div class="mb-3">
     <label for="firstnameId">firstname:</label>
     <input
       type="firstname"
@@ -33,7 +39,7 @@
       please type your firstname
     </div>
   </div>
-  <div class="form-group">
+  <div class="mb-3">
     <label for="ageId">age :</label>
     <input
       type="number"
@@ -49,7 +55,7 @@
       please type a valid age
     </div>
   </div>
-  <div class="form-group">
+  <div class="mb-3">
     <label for="jobId">job :</label>
     <input
       type="text"
@@ -66,7 +72,7 @@
       please type your job
     </div>
   </div>
-  <div class="form-group">
+  <div class="mb-3">
     <label for="cinId">cin :</label>
     <input
       type="text"
@@ -83,7 +89,7 @@
       please type your cin
     </div>
   </div>
-  <div class="form-group">
+  <div class="mb-3">
     <label for="pathId">path :</label>
     <input
       type="text"

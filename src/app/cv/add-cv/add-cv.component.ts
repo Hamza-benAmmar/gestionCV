@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -28,18 +28,34 @@ export class AddCvComponent {
     );
 
     this.cv$.subscribe((cv: Cv) => {
-      this.form = new FormGroup({
-        name: new FormControl(cv.name, [Validators.required]),
-        firstname: new FormControl(cv.firstname, [Validators.required]),
-        cin: new FormControl(cv.cin, [
-          Validators.required,
-          Validators.minLength(8),
-        ]),
-        path: new FormControl(cv.path, [Validators.required]),
-        age: new FormControl(cv.age, [Validators.required, Validators.min(18)]),
-        job: new FormControl(cv.job, [Validators.required]),
-      });
+      console.log('aatini el cv baliz ');
+      console.log(cv);
+      this.createForm(cv);
     });
+  }
+
+  /* private createForm(c: Cv): void {
+    this.form = new FormGroup({
+      name: new FormControl(c.name, Validators.required),
+      firstname: new FormControl(c.firstname, Validators.required),
+      age: new FormControl(c.age, [Validators.required, Validators.min(16)]),
+      path: new FormControl(c.path),
+      job: new FormControl(c.job),
+    });
+  }*/
+  private createForm(cv: Cv): void {
+    this.form = new FormGroup({
+      firstname: new FormControl(cv.firstname, [Validators.required]),
+      name: new FormControl(cv.name),
+      cin: new FormControl(cv.cin, [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+      path: new FormControl(cv.path, [Validators.required]),
+      age: new FormControl(cv.age, [Validators.required, Validators.min(18)]),
+      job: new FormControl(cv.job, [Validators.required]),
+    });
+    console.log(cv);
   }
 
   constructor(
@@ -55,7 +71,7 @@ export class AddCvComponent {
           console.log('in the switch map');
           const id = params['id'];
           return id
-            ? this.cvService.updateCv(this.form.value).pipe(
+            ? this.cvService.updateCv({ id, ...this.form.value }).pipe(
                 tap(() => {
                   this.toastService.success('Cv updated successfully');
                   this.router.navigate(['cv', id]);
@@ -75,5 +91,15 @@ export class AddCvComponent {
         })
       )
       .subscribe();
+  }
+
+  @HostListener('window:beforeunload')
+  canDeactivate() {
+    if (this.form.dirty) {
+      return window.confirm(
+        'You have unsaved changes. Do you really want to leave?'
+      );
+    }
+    return true;
   }
 }

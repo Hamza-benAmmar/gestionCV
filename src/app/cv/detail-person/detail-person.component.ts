@@ -62,7 +62,7 @@ export class DetailPersonComponent implements OnInit {
       this.cvService.deleteCv(this.cv.id).subscribe(
         () => {
           console.log('deleting');
-          this.router.navigate(['']);
+          this.router.navigate(['cv']);
         },
         (error) => {
           console.error('Error deleting CV:', error);

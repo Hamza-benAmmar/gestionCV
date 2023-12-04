@@ -12,11 +12,6 @@
     <a class="btn btn-primary" (click)="deleteCv()" [routerLink]="['']"
       >delete</a
     >
-    <a
-      class="btn btn-primary"
-      (click)="deleteCv()"
-      [routerLink]="'/cv/update/' + cv.id"
-      >update</a
-    >
+    <a class="btn btn-primary" [routerLink]="'/cv/update/' + cv.id">update</a>
   </div>
 </div>

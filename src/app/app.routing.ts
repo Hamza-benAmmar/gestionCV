@@ -10,6 +10,7 @@ import { cvResolver } from './cv/resolvers/cv-resolver.guard';
 import { detailResolver } from './cv/resolvers/detail-resolver..guard';
 import { MasterDetailsComponent } from './cv/master-details/master-details.component';
 import { AddCvComponent } from './cv/add-cv/add-cv.component';
+import { unsavedChangesGuard } from './guards/unsaved-changes.guard';
 
 const APP_ROUTING: Routes = [
   {
@@ -24,12 +25,14 @@ const APP_ROUTING: Routes = [
       {
         path: 'update/:id',
         component: AddCvComponent,
+        canDeactivate: [unsavedChangesGuard],
       },
     ],
   },
   {
     path: 'add',
     component: AddCvComponent,
+    canDeactivate: [unsavedChangesGuard],
   },
   {
     path: 'list',
@@ -43,7 +46,12 @@ const APP_ROUTING: Routes = [
       },
     ],
   },
-  { path: '', component: CvComponent, resolve: { cvs: cvResolver } },
+  {
+    path: '',
+    component: CvComponent,
+    resolve: { cvs: cvResolver },
+    canDeactivate: [unsavedChangesGuard],
+  },
   { path: 'miniword', component: MiniWordComponent },
   { path: 'login', component: FormComponent },
   { path: 'filtering', component: FilteringCvComponent },
