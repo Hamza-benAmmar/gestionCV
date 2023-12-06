@@ -9,7 +9,11 @@
     <h5 class="card-title">age : {{ cv?.age }}</h5>
     <h5 class="card-title">job : {{ cv?.job }}</h5>
     <a class="btn btn-primary" [routerLink]="['']">return</a>
-    <a class="btn btn-primary" (click)="deleteCv()" [routerLink]="['']"
+    <a
+      class="btn btn-primary"
+      (click)="deleteCv()"
+      [routerLink]="['']"
+      *ngIf="this.isLoggedIn$ | async"
       >delete</a
     >
     <a class="btn btn-primary" [routerLink]="'/cv/update/' + cv.id">update</a>

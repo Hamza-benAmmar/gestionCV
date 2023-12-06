@@ -43,6 +43,7 @@ export class UserService {
       })
     );
   }
+
   logout() {
     localStorage.removeItem('token');
     this.userSubject.next(null);

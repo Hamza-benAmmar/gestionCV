@@ -11,6 +11,7 @@ import { detailResolver } from './cv/resolvers/detail-resolver..guard';
 import { MasterDetailsComponent } from './cv/master-details/master-details.component';
 import { AddCvComponent } from './cv/add-cv/add-cv.component';
 import { unsavedChangesGuard } from './guards/unsaved-changes.guard';
+import { loginGuard } from './guards/login.guard';
 
 const APP_ROUTING: Routes = [
   {
@@ -26,6 +27,7 @@ const APP_ROUTING: Routes = [
         path: 'update/:id',
         component: AddCvComponent,
         canDeactivate: [unsavedChangesGuard],
+        canActivate: [loginGuard],
       },
     ],
   },
@@ -33,6 +35,7 @@ const APP_ROUTING: Routes = [
     path: 'add',
     component: AddCvComponent,
     canDeactivate: [unsavedChangesGuard],
+    canActivate: [loginGuard],
   },
   {
     path: 'list',

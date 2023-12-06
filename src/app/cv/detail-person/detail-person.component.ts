@@ -3,7 +3,8 @@ import { Cv } from '../../models/cv';
 import { CvService } from '../../services/cv.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable, catchError, of, tap } from 'rxjs';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-detail-person',
@@ -12,8 +13,10 @@ import { Observable } from 'rxjs';
 })
 export class DetailPersonComponent implements OnInit {
   cv: Cv | undefined;
+  isLoggedIn$: Observable<boolean> = this.userService.isLoggedIn;
   constructor(
     private cvService: CvService,
+    private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private toastrService: ToastrService,
     private router: Router
@@ -34,40 +37,24 @@ export class DetailPersonComponent implements OnInit {
         this.router.navigate(['/']);
       },
     });
-    //console.log('cv : ', this.cv);
-    /*this.cvService.getCvById(this.cv.id).subscribe({
-      next: (cv) => {
-        this.cv = cv;
-      },
-    });*/
-    /*this.activatedRoute.params.subscribe((params) => {
-      const { id } = params;
-      /*this.cvService.getCvById(id).subscribe({
-        next: (cv) => {
-          console.log(cv);
-          this.cv = cv;
-        },
-        error: (error) => {
-          this.router.navigate(['']);
-          this.toastrService.error('Cannot find Cv ', 'error', {
+  }
+  deleteCv() {
+    const id = this.activatedRoute.snapshot.params['id'];
+    if (this.cv) {
+      this.cvService.deleteCv(id).subscribe({
+        next: () => {
+          this.router.navigate(['cv']);
+          this.toastrService.success('Cv deleted successfully', 'error', {
             timeOut: 2000,
           });
         },
-      });
-      this.cv.
-    });*/
-  }
-  deleteCv() {
-    if (this.cv) {
-      this.cvService.deleteCv(this.cv.id).subscribe(
-        () => {
-          console.log('deleting');
-          this.router.navigate(['cv']);
+        error: (err) => {
+          this.toastrService.error(`error deleting Cv`, 'error', {
+            timeOut: 2000,
+          });
+          return of(null);
         },
-        (error) => {
-          console.error('Error deleting CV:', error);
-        }
-      );
+      });
     }
   }
 }
