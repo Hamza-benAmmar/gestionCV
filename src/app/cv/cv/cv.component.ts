@@ -35,7 +35,6 @@ export class CvComponent implements OnInit {
     //this.cvs = this.activatedRoute.snapshot.data['cvs'];
     this.activatedRoute.data.subscribe((data) => {
       this.cvs = data['cvs'];
-      console.log('Resolved Data:', this.cvs);
     });
   }
 
@@ -44,7 +43,6 @@ export class CvComponent implements OnInit {
   selectedCv: Cv | null = null;
 
   selectCv(cv: Cv) {
-    console.log(cv);
     this.selectedCv = cv;
   }
 }

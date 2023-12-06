@@ -69,7 +69,6 @@ export class CvService {
 
   getCvById(id: number): Observable<Cv | undefined> {
     const url = `https://apilb.tridevs.net/api/personnes/${id}`;
-    console.log(this.http.get<Cv>(url));
     return this.http.get<Cv>(url);
   }
   deleteCv(id: number): Observable<void> {
@@ -78,12 +77,10 @@ export class CvService {
   }
   addCv(cv: Cv) {
     console.log('in the add cv function');
-    console.log(cv);
     return this.http.post(this.url, cv);
   }
 
   updateCv(cv: Cv) {
-    console.log(cv);
     return this.http.patch(this.url, cv);
   }
 }

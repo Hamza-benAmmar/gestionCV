@@ -33,16 +33,6 @@ export class AddCvComponent {
       this.createForm(cv);
     });
   }
-
-  /* private createForm(c: Cv): void {
-    this.form = new FormGroup({
-      name: new FormControl(c.name, Validators.required),
-      firstname: new FormControl(c.firstname, Validators.required),
-      age: new FormControl(c.age, [Validators.required, Validators.min(16)]),
-      path: new FormControl(c.path),
-      job: new FormControl(c.job),
-    });
-  }*/
   private createForm(cv: Cv): void {
     this.form = new FormGroup({
       firstname: new FormControl(cv.firstname, [Validators.required]),

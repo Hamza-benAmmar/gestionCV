@@ -17,7 +17,6 @@ export class EmbaucheService {
     return this.cvsEmbauches;
   }
   embaucherCondidate(cv: Cv): void {
-    console.log('embauches : ' + cv.id);
     const index = this.cvsEmbauches.findIndex((c) => c.id === cv.id);
     if (index === -1) {
       this.cvsEmbauches.push(cv);

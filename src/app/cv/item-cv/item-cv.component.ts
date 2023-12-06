@@ -12,7 +12,6 @@ export class ItemCvComponent {
   @Output() selected = new EventEmitter();
 
   selectCv() {
-    console.log('to the list component');
     this.selected.emit(this.cv);
   }
 }

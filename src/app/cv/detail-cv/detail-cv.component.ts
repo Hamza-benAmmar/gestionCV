@@ -16,9 +16,7 @@ export class DetailCvComponent {
   ) {}
   @Input() cv: Cv | null = null;
   embaucherCondidate(): void {
-    console.log('hey' + this.cv);
     if (this.cv) {
-      console.log(this.cv);
       this.embaucheService.embaucherCondidate(this.cv);
     }
   }

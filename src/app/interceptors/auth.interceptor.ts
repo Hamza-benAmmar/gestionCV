@@ -22,8 +22,6 @@ export class AuthInterceptor implements HttpInterceptor {
       take(1),
       exhaustMap((user) => {
         const token = user?.token;
-        console.log('interceptor');
-        console.log(token);
         if (token) {
           const authRequest = request.clone({
             params: new HttpParams().set('access_token', token),

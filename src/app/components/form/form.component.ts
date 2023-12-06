@@ -29,10 +29,10 @@ export class FormComponent implements OnInit {
   onFormSubmit() {
     this.userService.login(this.form.value).subscribe({
       next: (user: User) => {
-        this.router.navigate(['']);
+        this.router.navigate(['cv']);
       },
       error: (error: any) => {
-        this.toastrService.error('email or password incorrect', 'error', {
+        this.toastrService.error('wrong credentials', 'error', {
           timeOut: 2000,
         });
       },

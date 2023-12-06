@@ -18,11 +18,9 @@ export class FilteringCvComponent implements OnInit {
   ngOnInit(): void {
     this.cvService.getCvs().subscribe({
       next: (cvs) => {
-        console.log('filter : ', cvs);
         if (cvs != null) {
           this.juniors = cvs.filter((cv) => cv.age < 40);
           this.seniors = cvs.filter((cv) => cv.age >= 40);
-          console.log(this.juniors);
           this.cvs = this.juniors;
         }
       },

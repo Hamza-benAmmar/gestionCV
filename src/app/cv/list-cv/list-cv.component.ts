@@ -12,7 +12,6 @@ export class ListCvComponent {
   @Input() cvs: Cv[] = [];
 
   selectCv(selected: Cv) {
-    console.log('to the cv component');
     this.selectedCv.emit(selected);
   }
 }

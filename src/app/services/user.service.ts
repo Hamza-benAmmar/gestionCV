@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
-import { UserLogin } from '../components/form/models/userLogin';
 import { User } from '../components/form/models/User';
+import { UserLogin } from '../components/form/models/userLogin';
 import { UserToken } from '../components/form/models/userToken';
 
 @Injectable({
@@ -15,18 +15,27 @@ export class UserService {
     map((user) => !!user)
   );
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+    if (typeof localStorage !== 'undefined') {
+      const token = localStorage.getItem('token');
+      if (token) {
+        this.userSubject.next(JSON.parse(token));
+      }
+    } else {
+      console.log('localStorage is not available.');
+    }
+  }
+
   login(payload: UserLogin): Observable<User> {
     return this.httpClient.post<User>(this._url, payload).pipe(
       tap((user) => {
-        const token = {
+        const tokenData = {
           token: user.id,
           email: payload.email,
           userId: user.userId,
         };
-        console.log('login');
-        localStorage.setItem('token', user.id);
-        this.userSubject.next(token);
+        localStorage.setItem('token', JSON.stringify(tokenData));
+        this.userSubject.next(tokenData);
       }),
       catchError((err) => {
         console.log(err);
