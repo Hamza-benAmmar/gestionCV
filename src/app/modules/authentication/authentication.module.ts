@@ -5,15 +5,16 @@ import { AuthRoutingModule } from './auth.routing';
 import { FormComponent } from './form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [FormComponent],
   imports: [
-    CommonModule,
     AuthRoutingModule,
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SharedModule,
   ],
 })
 export class AuthenticationModule {}

@@ -17,6 +17,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ProductComponent } from './product/product.component';
 import { CvModule } from './modules/cv/cv.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
     BrowserModule,
     CvModule,
     AuthenticationModule,
+    SharedModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,

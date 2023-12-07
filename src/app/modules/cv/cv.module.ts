@@ -15,6 +15,7 @@ import { MasterDetailsComponent } from './components/master-details/master-detai
 import { SearchComponent } from './components/search/search.component';
 import { CvRoutingModule } from './cv.routing';
 import { DefaultImagePipe } from './pipes/default-image.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { DefaultImagePipe } from './pipes/default-image.pipe';
     ListCvComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
