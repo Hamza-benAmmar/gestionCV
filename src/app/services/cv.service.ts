@@ -28,7 +28,6 @@ export class CvService {
   }
   cvsSubject = new BehaviorSubject<Cv[]>(null);
   cvs$ = this.cvsSubject.asObservable();
-  private cvListObservable$: Observable<Cv[]>;
 
   /*getCvs(): Observable<Cv[]> {
     return this.http.get<Cv[]>(this.url).pipe(

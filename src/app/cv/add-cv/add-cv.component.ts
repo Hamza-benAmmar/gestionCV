@@ -41,7 +41,7 @@ export class AddCvComponent {
         Validators.required,
         Validators.minLength(8),
       ]),
-      path: new FormControl(cv.path, [Validators.required]),
+      path: new FormControl(cv.path),
       age: new FormControl(cv.age, [Validators.required, Validators.min(18)]),
       job: new FormControl(cv.job, [Validators.required]),
     });
@@ -85,11 +85,8 @@ export class AddCvComponent {
 
   @HostListener('window:beforeunload')
   canDeactivate() {
-    if (this.form.dirty) {
-      return window.confirm(
-        'You have unsaved changes. Do you really want to leave?'
-      );
-    }
-    return true;
+    return this.form.dirty
+      ? window.confirm('You have unsaved changes. Do you really want to leave?')
+      : true;
   }
 }

@@ -3,6 +3,7 @@ import { Cv } from '../../models/cv';
 import { CvService } from '../../services/cv.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
+import { map, of, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-cv',
@@ -17,25 +18,18 @@ export class CvComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    /*this.cvService.getCvs().subscribe({
-      next: (data) => {
-        this.cvs = data;
-      },
-      error: (error) => {
-        this.toastrService.error(
-          'could not fetch the api , i will be using fakers',
-          'error',
-          {
-            timeOut: 2000,
-          }
-        );
-        this.cvs = this.cvService.getFakers();
-      },
-    });*/
     //this.cvs = this.activatedRoute.snapshot.data['cvs'];
-    this.activatedRoute.data.subscribe((data) => {
-      this.cvs = data['cvs'];
-    });
+    // this.activatedRoute.data.subscribe((data) => {
+    //   this.cvs = data['cvs'];
+    // });
+    this.activatedRoute.data
+      .pipe(
+        map((data) => data['cvs']),
+        tap((cvs) => {
+          this.cvs = cvs;
+        })
+      )
+      .subscribe();
   }
 
   @Input() cvs: Cv[] = [];
