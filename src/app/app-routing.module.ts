@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { cvResolver } from './cv/resolvers/cv-resolver.guard';
 
 const routes: Routes = [];
 

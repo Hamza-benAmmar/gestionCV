@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, catchError, map, of, switchMap, tap } from 'rxjs';
-import { CvService } from '../../services/cv.service';
+import { CvService } from '../../../../services/cv.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Cv } from '../../models/cv';
 

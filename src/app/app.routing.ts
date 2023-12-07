@@ -1,62 +1,48 @@
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { MiniWordComponent } from './components/mini-word/mini-word.component';
-import { CvComponent } from './cv/cv/cv.component';
-import { DetailPersonComponent } from './cv/detail-person/detail-person.component';
-import { FormComponent } from './components/form/form.component';
-import { FilteringCvComponent } from './components/filtering-cv/filtering-cv.component';
 import { RxJsComponent } from './components/rx-js/rx-js.component';
+import { FilteringCvComponent } from './modules/cv/components/filtering-cv/filtering-cv.component';
 import { ProductComponent } from './product/product.component';
-import { cvResolver } from './cv/resolvers/cv-resolver.guard';
-import { detailResolver } from './cv/resolvers/detail-resolver..guard';
-import { MasterDetailsComponent } from './cv/master-details/master-details.component';
-import { AddCvComponent } from './cv/add-cv/add-cv.component';
-import { unsavedChangesGuard } from './guards/unsaved-changes.guard';
-import { loginGuard } from './guards/login.guard';
 
 const APP_ROUTING: Routes = [
   {
     path: 'cv',
-    children: [
-      { path: '', component: CvComponent, resolve: { cvs: cvResolver } },
-      {
-        path: ':id',
-        component: DetailPersonComponent,
-        resolve: { cvDetail: detailResolver },
-      },
-      {
-        path: 'update/:id',
-        component: AddCvComponent,
-        canDeactivate: [unsavedChangesGuard],
-        canActivate: [loginGuard],
-      },
-    ],
+    loadChildren: async () => {
+      const module = await import('./modules/cv/cv.module');
+      return module.CvModule;
+    },
   },
   {
     path: 'add',
-    component: AddCvComponent,
-    canDeactivate: [unsavedChangesGuard],
-    canActivate: [loginGuard],
+    loadChildren: async () => {
+      const module = await import('./modules/cv/cv.module');
+      return module.CvModule;
+    },
   },
   {
     path: 'list',
-    component: MasterDetailsComponent,
-    resolve: { cvs: cvResolver },
-    children: [
-      {
-        path: ':id',
-        component: DetailPersonComponent,
-        resolve: { cvDetail: detailResolver },
-      },
-    ],
+    loadChildren: async () => {
+      const module = await import('./modules/cv/cv.module');
+      return module.CvModule;
+    },
   },
   {
     path: '',
-    component: CvComponent,
-    resolve: { cvs: cvResolver },
-    canDeactivate: [unsavedChangesGuard],
+    loadChildren: async () => {
+      const module = await import('./modules/cv/cv.module');
+      return module.CvModule;
+    },
   },
   { path: 'miniword', component: MiniWordComponent },
-  { path: 'login', component: FormComponent },
+  {
+    path: 'login',
+    loadChildren: async () => {
+      const module = await import(
+        './modules/authentication/authentication.module'
+      );
+      return module.AuthenticationModule;
+    },
+  },
   { path: 'filtering', component: FilteringCvComponent },
   { path: 'merge', component: RxJsComponent },
   { path: 'product', component: ProductComponent },

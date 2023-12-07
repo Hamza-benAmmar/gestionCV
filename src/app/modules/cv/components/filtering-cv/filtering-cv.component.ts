@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Cv } from '../../models/cv';
-import { UserService } from '../../services/user.service';
-import { CvService } from '../../services/cv.service';
+import { UserService } from '../../../../services/user.service';
+import { CvService } from '../../../../services/cv.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-filtering-cv',

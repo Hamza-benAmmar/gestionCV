@@ -1,5 +1,5 @@
 import { CanDeactivateFn } from '@angular/router';
-import { AddCvComponent } from '../cv/add-cv/add-cv.component';
+import { AddCvComponent } from '../components/add-cv/add-cv.component';
 
 export const unsavedChangesGuard: CanDeactivateFn<AddCvComponent> = (
   component,

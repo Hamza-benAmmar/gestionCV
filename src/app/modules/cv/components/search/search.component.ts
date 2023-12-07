@@ -9,8 +9,8 @@ import {
   of,
   switchMap,
 } from 'rxjs';
-import { CvService } from '../../services/cv.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { CvService } from '../../../../services/cv.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',

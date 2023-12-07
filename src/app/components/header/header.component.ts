@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { UserService } from '../../services/user.service';
-import { UserToken } from '../form/models/userToken';
+import { UserToken } from '../../modules/authentication/models/userToken';
 
 @Component({
   selector: 'app-header',

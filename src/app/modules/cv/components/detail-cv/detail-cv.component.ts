@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Cv } from '../../models/cv';
-import { EmbaucheService } from '../../services/embauche.service';
+import { EmbaucheService } from '../../../../services/embauche.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 

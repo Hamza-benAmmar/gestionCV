@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Cv } from '../../models/cv';
-import { CvService } from '../../services/cv.service';
+import { CvService } from '../../../../services/cv.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { EMPTY, Observable, catchError, of, tap } from 'rxjs';
-import { UserService } from '../../services/user.service';
+import { Observable, of } from 'rxjs';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-detail-person',
