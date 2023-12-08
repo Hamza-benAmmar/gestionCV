@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Cv } from '../models/cv';
+import { Cv } from '../../../models/cv';
 import {
   HttpClient,
   HttpErrorResponse,
@@ -75,6 +75,7 @@ export class CvService {
     return this.http.delete<void>(deleteUrl);
   }
   addCv(cv: Cv) {
+    console.log(this.url);
     console.log('in the add cv function');
     return this.http.post(this.url, cv);
   }

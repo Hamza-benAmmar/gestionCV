@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../modules/authentication/services/user.service';
 import { UserToken } from '../../modules/authentication/models/userToken';
 
 @Component({
@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit {
   }
 
   handleLogout() {
-    console.log(this.userService.isLoggedIn);
     this.userService.logout();
   }
 }

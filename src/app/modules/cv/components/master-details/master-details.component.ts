@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Cv } from '../../models/cv';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CvService } from '../../../../services/cv.service';
+import { CvService } from '../../services/cv.service';
 import { Observable, catchError, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 

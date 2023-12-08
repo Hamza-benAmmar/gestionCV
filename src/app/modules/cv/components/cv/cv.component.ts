@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CvService } from '../../../../services/cv.service';
+import { CvService } from '../../services/cv.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs';

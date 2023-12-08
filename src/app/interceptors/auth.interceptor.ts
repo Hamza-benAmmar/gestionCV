@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, exhaustMap, take } from 'rxjs';
-import { UserService } from '../services/user.service';
+import { UserService } from '../modules/authentication/services/user.service';
 
 @Injectable({
   providedIn: 'root',

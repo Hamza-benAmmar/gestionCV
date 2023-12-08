@@ -9,7 +9,7 @@ import {
   of,
   switchMap,
 } from 'rxjs';
-import { CvService } from '../../../../services/cv.service';
+import { CvService } from '../../services/cv.service';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,5 +1,5 @@
 import { CanActivateFn, ResolveFn } from '@angular/router';
-import { CvService } from '../../../services/cv.service';
+import { CvService } from '../services/cv.service';
 import { inject } from '@angular/core';
 import { Cv } from '../models/cv';
 import { catchError, of, tap } from 'rxjs';

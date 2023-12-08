@@ -10,9 +10,10 @@ import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [FormComponent],
   imports: [
-    AuthRoutingModule,
     RouterModule,
+    AuthRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     SharedModule,
   ],

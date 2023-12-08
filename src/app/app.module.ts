@@ -1,4 +1,8 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
@@ -18,6 +22,7 @@ import { ProductComponent } from './product/product.component';
 import { CvModule } from './modules/cv/cv.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -27,15 +32,16 @@ import { SharedModule } from './modules/shared/shared.module';
     ProductComponent,
   ],
   providers: [
-    provideClientHydration(),
+    HttpClient,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   imports: [
     MiniWordComponent,
     BrowserModule,
-    CvModule,
-    AuthenticationModule,
+    //AuthenticationModule,
+    // CvModule,
+    CommonModule,
     SharedModule,
     AppRoutingModule,
     BrowserAnimationsModule,

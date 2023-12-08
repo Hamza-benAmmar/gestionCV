@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, catchError, map, of, switchMap, tap } from 'rxjs';
-import { CvService } from '../../../../services/cv.service';
+import { CvService } from '../../services/cv.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Cv } from '../../models/cv';
 
@@ -17,6 +17,7 @@ export class AddCvComponent {
   id$: Observable<number>;
   cv$: Observable<Cv>;
   ngOnInit(): void {
+    console.log('heyyyyyyyyyyyy');
     this.id$ = this.activatedRoute.params.pipe(map((params) => params['id']));
 
     this.cv$ = this.id$.pipe(
@@ -45,7 +46,6 @@ export class AddCvComponent {
       age: new FormControl(cv.age, [Validators.required, Validators.min(18)]),
       job: new FormControl(cv.job, [Validators.required]),
     });
-    console.log(cv);
   }
 
   constructor(

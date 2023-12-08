@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
-import { User } from '../modules/authentication/models/User';
-import { UserLogin } from '../modules/authentication/models/userLogin';
-import { UserToken } from '../modules/authentication/models/userToken';
+import { User } from '../models/User';
+import { UserLogin } from '../models/userLogin';
+import { UserToken } from '../models/userToken';
 
 @Injectable({
   providedIn: 'root',
