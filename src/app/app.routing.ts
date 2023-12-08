@@ -3,6 +3,7 @@ import { MiniWordComponent } from './components/mini-word/mini-word.component';
 import { RxJsComponent } from './components/rx-js/rx-js.component';
 import { FilteringCvComponent } from './modules/cv/components/filtering-cv/filtering-cv.component';
 import { ProductComponent } from './product/product.component';
+import { CustomPreloadingStrategy } from './strategies/preload.strategy';
 
 const APP_ROUTING: Routes = [
   { path: 'product', component: ProductComponent },
@@ -31,4 +32,6 @@ const APP_ROUTING: Routes = [
   },
 ];
 
-export const ROUTING = RouterModule.forRoot(APP_ROUTING);
+export const ROUTING = RouterModule.forRoot(APP_ROUTING, {
+  preloadingStrategy: CustomPreloadingStrategy,
+});

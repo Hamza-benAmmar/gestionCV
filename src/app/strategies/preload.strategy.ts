@@ -8,7 +8,7 @@ export class CustomPreloadingStrategy implements PreloadingStrategy {
     if (route.data['preload'] && route.data) {
       return load();
     } else {
-      of(null);
+      return of(null);
     }
   }
 }
